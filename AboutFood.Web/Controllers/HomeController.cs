@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AboutFood.Data.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,17 @@ namespace AboutFood.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IRestaurantData db;
+
+        public HomeController()
+        {
+            db = new InMemoryRestaurantData(); // gonna change that later, we'll avoid the 'new' keyword
+        }
+        
         public ActionResult Index()
         {
-            return View();
+            var model = db.GetAll();
+            return View(model);
         }
 
         public ActionResult About()
