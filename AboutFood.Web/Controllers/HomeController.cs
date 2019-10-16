@@ -11,9 +11,9 @@ namespace AboutFood.Web.Controllers
     {
         IRestaurantData db;
 
-        public HomeController()
+        public HomeController(IRestaurantData db)
         {
-            db = new InMemoryRestaurantData(); // gonna change that later, we'll avoid the 'new' keyword
+            this.db = db;
         }
         
         public ActionResult Index()
