@@ -19,6 +19,11 @@ namespace AboutFood.Data.Services
             };
         }
 
+        public Restaurant Get(int id)
+        {
+            return restaurants.FirstOrDefault(r => r.Id == id);
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
             return restaurants.OrderBy(restaurants => restaurants.Name);
