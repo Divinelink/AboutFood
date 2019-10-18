@@ -1,4 +1,5 @@
-﻿using AboutFood.Data.Services;
+﻿using AboutFood.Data.Models;
+using AboutFood.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,24 @@ namespace AboutFood.Web.Controllers
         {
             var model = db.Get(id);
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Restaurant restaurant)
+        {            
+            if (ModelState.IsValid)
+            {
+                db.Add(restaurant);
+                return RedirectToAction("Details", new { id = restaurant.Id });
+            }
+            return View();
         }
     }
 }
