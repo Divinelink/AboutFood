@@ -19,9 +19,11 @@ namespace AboutFood.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterApiControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterType<InMemoryRestaurantData>()
+            builder.RegisterType<SqlRestaurantData>()
                    .As<IRestaurantData>() // Whenever something needs IRestaurantData, this container should be able to handle it. 
-                   .SingleInstance();
+                   .InstancePerRequest();
+
+            builder.RegisterType<AboutFoodDbContext>().InstancePerRequest();
 
             var container = builder.Build(); //Whenever you need to resolve dependencies, use this container
 

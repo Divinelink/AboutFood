@@ -19,8 +19,6 @@ namespace AboutFood.Data.Services
             };
         }
 
-
-
         public void Add(Restaurant restaurant)
         {
             restaurants.Add(restaurant);
