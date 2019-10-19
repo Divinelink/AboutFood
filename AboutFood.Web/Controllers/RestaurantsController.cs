@@ -72,6 +72,7 @@ namespace AboutFood.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Add(restaurant);
+                TempData["Message"] = "You have created the restaurant " + restaurant.Name + "!";
                 return RedirectToAction("Details", new { id = restaurant.Id });
             }
             return View();
