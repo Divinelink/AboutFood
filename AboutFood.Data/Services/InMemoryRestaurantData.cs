@@ -44,5 +44,14 @@ namespace AboutFood.Data.Services
         {
             return restaurants.OrderBy(restaurants => restaurants.Name);
         }
+
+        public void Delete(int id)
+        {
+            var restaurant = Get(id);
+            if (restaurant != null)
+            {
+                restaurants.Remove(restaurant);
+            }
+        }
     }
 }

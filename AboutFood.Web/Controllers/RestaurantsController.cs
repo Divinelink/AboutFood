@@ -67,13 +67,32 @@ namespace AboutFood.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Restaurant restaurant)
-        {            
+        {
             if (ModelState.IsValid)
             {
                 db.Add(restaurant);
                 return RedirectToAction("Details", new { id = restaurant.Id });
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var model = db.Get(id);
+            if (model == null)
+            {
+                return View("NotFound");
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, FormCollection form)
+        {
+            db.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
